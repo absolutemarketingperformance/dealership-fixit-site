@@ -2,7 +2,7 @@
 
 Same stack as the PGA dealer portal: plain HTML, CSS and JS on Vercel (team amp-digital), plus three small serverless functions in `api/`.
 
-Live: https://dealership-fixit-site.vercel.app
+Live: https://dealershipfixit.com
 Vercel project: dealership-fixit-site (prj_R7qRbB1amFa6ILw0GBIAFCdf1Lpc)
 
 ## Pages
