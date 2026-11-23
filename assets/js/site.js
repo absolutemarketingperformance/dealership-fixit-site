@@ -5,9 +5,10 @@
     spotify: "https://open.spotify.com/show/32L4getcOmBCYL3fRxDlyH",
     apple: "https://podcasts.apple.com/us/podcast/id1449367603",
     linktree: "https://linktr.ee/dealershipfixit",
-    linkedin: "https://www.linkedin.com/in/jacob-b-berry/",
+    linkedin: "https://www.linkedin.com/company/dealershipfixit",
+    jacob: "https://www.linkedin.com/in/jacob-b-berry/",
     tiktok: "https://www.tiktok.com/@dealershipfixit",
-    instagram: "https://www.instagram.com/dealershipfixit",
+    instagram: "https://www.instagram.com/dealership_fixit/",
     facebook: "https://www.facebook.com/dealershipfixit",
     x: "https://x.com/dealershipfixit",
     motohunt: "https://dealers.motohunt.com/fixit?utm_source=site&utm_medium=referral&utm_campaign=dealership_fixit",
@@ -131,11 +132,12 @@
       <button class="x" aria-label="Close">\u00d7</button>
       <img src="/assets/img/wordmark.webp" alt="Dealership fiXit">
       <h3 id="popupTitle">Get the Rundown before Monday's meeting</h3>
-      <p>One short email a week: the dealer news that matters, the stock moves, and every new show the minute it drops.</p>
+      <p>One short email a week: the dealer news that matters, the stock moves, and every new show the minute it drops. Sign up today and get the Ultimate Used Inventory Playbook free.</p>
       <form data-fixit="newsletter" novalidate>
-        <input type="email" name="email" placeholder="you@yourdealership.com" required aria-label="Email">
+        <input type="text" name="name" placeholder="First name" required aria-label="First name" autocomplete="given-name">
+        <input type="email" name="email" placeholder="you@yourdealership.com" required aria-label="Email" autocomplete="email">
         <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px">
-        <button class="btn btn-pink" type="submit" style="justify-content:center">Send me the Rundown</button>
+        <button class="btn btn-pink" type="submit" style="justify-content:center">Send me the Rundown + the free playbook</button>
         <div class="form-msg"></div>
         <small>No spam. Unsubscribe any time.</small>
       </form>

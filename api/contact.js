@@ -52,12 +52,20 @@ async function toHubSpot(r) {
   const portal = process.env.HUBSPOT_PORTAL_ID, form = process.env.HUBSPOT_FORM_GUID;
   if (!portal || !form) return false;
   const [firstname, ...rest] = (r.name || "").split(" ");
-  const fields = [["email", r.email], ["firstname", firstname], ["lastname", rest.join(" ")], ["company", r.company], ["phone", r.phone], ["message", `[${r.type}] ${r.topic || ""} ${r.message || ""}`.trim()]]
-    .filter(([, v]) => v).map(([name, value]) => ({ name, value }));
-  const res = await fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${portal}/${form}`, {
-    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ fields, context: { pageUri: "https://dealershipfixit" + (r.page || "/"), pageName: "Dealership fiXit " + r.type } })
-  });
-  if (!res.ok) throw new Error("hubspot " + res.status);
+  const base = [["email", r.email], ["firstname", firstname], ["lastname", rest.join(" ")], ["company", r.company], ["phone", r.phone]];
+  if (r.type !== "newsletter") base.push(["message", `[${r.type}] ${r.topic || ""} ${r.message || ""}`.trim()]);
+  // Tag the contact as a podcast subscriber. These properties may not exist yet; fall back to the plain submit if HubSpot rejects them.
+  const tagged = base.concat([["dealership_fixit_subscriber", "true"], ["dealership_fixit_signup_source", `${r.type} form on ${r.page || "/"}`]]);
+  const submit = async (pairs) => {
+    const fields = pairs.filter(([, v]) => v).map(([name, value]) => ({ name, value }));
+    return fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${portal}/${form}`, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ fields, context: { pageUri: "https://dealershipfixit.com" + (r.page || "/"), pageName: "Dealership fiXit " + r.type } })
+    });
+  };
+  let res = await submit(tagged);
+  if (res.status === 400) res = await submit(base);
+  if (!res.ok) throw new Error("hubspot " + res.status + " " + (await res.text()).slice(0, 200));
   return true;
 }
 
