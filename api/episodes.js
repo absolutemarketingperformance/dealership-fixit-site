@@ -135,8 +135,9 @@ function classify(title, desc) {
   ];
   const t = (title || "").toLowerCase();
   for (const [seg, re] of rules) if (re.test(t)) return seg;
+  // Show notes name every segment, so for descriptions check the Rundown first (its notes always say "Rundown").
   const d = (desc || "").toLowerCase();
-  for (const [seg, re] of rules) if (re.test(d)) return seg;
+  for (const [seg, re] of [rules[2], rules[0], rules[1]]) if (re.test(d)) return seg;
   return "interview";
 }
 

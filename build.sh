@@ -3,7 +3,7 @@
 set -e
 cd "$(dirname "$0")"
 rm -rf dist && mkdir -p dist
-cp -r assets api vercel.json dist/
+cp -r assets vercel.json dist/   # api/ stays at the repo root; Vercel runs it from there
 HEAD=$(cat _head.html)
 for f in *.html; do
   [[ "$f" == _* ]] && continue
