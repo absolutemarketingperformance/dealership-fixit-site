@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Powersports Market Tracker | Dealership fiXit</title>
+<meta name="description" content="Stock prices for the companies that move powersports: Polaris, Harley-Davidson, BRP, Honda, Yamaha, dealer groups, marine, RV, and the major indexes.">
+<!--HEAD-->
+</head>
+<body>
+<main>
+  <section class="page-head"><div class="wrap">
+    <div class="eyebrow">Market tracker</div>
+    <h1>Powersports by the <span class="script">numbers</span></h1>
+    <p class="muted" style="max-width:680px">The public companies that shape your floor plan, your allocations, and your competition. This is the same basket that scrolls under the Rundown each week. Prices update during market hours and can lag up to 20 minutes.</p>
+    <p class="muted" id="asof"></p>
+  </div></section>
+
+  <section class="section tight"><div class="wrap">
+    <div class="panel" style="padding:0;overflow:auto">
+      <table class="mkt-table" id="mkt">
+        <thead><tr><th>Company</th><th>Ticker</th><th style="text-align:right">Price</th><th style="text-align:right">Day change</th><th style="text-align:right">Prior close</th></tr></thead>
+        <tbody><tr><td colspan="5" class="muted">Loading…</td></tr></tbody>
+      </table>
+    </div>
+    <p class="disclaimer" style="margin-top:12px">Data from Google Finance by way of our tracking sheet. Shown for information and conversation only. This is not investment advice and we are not financial advisors. Check prices with your broker before you act on anything.</p>
+  </div></section>
+
+  <section class="section tight"><div class="wrap" style="display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+    <div class="panel"><div class="eyebrow">Why we track this</div><h3>Stock moves are early signals</h3><p class="muted" style="margin:0">When an OEM stock slides, dealer programs, floor plan support, and allocations usually change a few months later. When a dealer group rallies, expect acquisitions. We call these out on the Rundown.</p></div>
+    <div class="panel"><div class="eyebrow">Used market</div><h3>Wholesale by the month</h3><p class="muted">For used values, book gaps, and auction volume, catch the NPA Market Update with Mike Murray every month.</p><a class="btn btn-ghost btn-sm" href="/episodes?s=npa">NPA episodes</a></div>
+    <div class="panel"><div class="eyebrow">Want a name added?</div><h3>Tell us who is missing</h3><p class="muted">Public companies in powersports, marine, RV, or dealer groups that sell powersports.</p><a class="btn btn-ghost btn-sm" href="/contact">Suggest a ticker</a></div>
+  </div></section>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("/api/market").then(r => r.json()).then(j => {
+    const tb = document.querySelector("#mkt tbody");
+    let g = "", html = "";
+    for (const r of j.rows || []) {
+      if (r.group && r.group !== g) { g = r.group; html += `<tr class="group"><td colspan="5">${g}</td></tr>`; }
+      const up = (r.changePct || 0) >= 0;
+      html += `<tr><td>${r.name}</td><td class="muted">${r.ticker}</td><td class="num">${r.price == null ? "" : fmtNum(r.price)}</td><td class="num ${up ? "up" : "down"}">${r.changePct == null ? "" : (up ? "▲ " : "▼ ") + Math.abs(r.changePct).toFixed(2) + "%"}</td><td class="num muted">${r.priorClose == null ? "" : fmtNum(r.priorClose)}</td></tr>`;
+    }
+    tb.innerHTML = html || '<tr><td colspan="5" class="muted">No data yet.</td></tr>';
+    document.getElementById("asof").textContent = j.asOf ? `As of ${j.asOf}${j.source === "snapshot" ? " (last saved snapshot)" : ""}` : "";
+  }).catch(() => {});
+});
+</script>
+</body>
+</html>

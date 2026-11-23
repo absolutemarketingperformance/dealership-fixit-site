@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Episodes | Dealership fiXit Podcast</title>
+<meta name="description" content="Every Dealership fiXit episode. Filter by interviews, the weekly Rundown, the NPA Market Update, or AI This Month.">
+<!--HEAD-->
+<script defer src="/assets/js/episodes.js"></script>
+</head>
+<body>
+<main>
+  <section class="page-head"><div class="wrap">
+    <div class="eyebrow">Episodes</div>
+    <h1>Every <span class="script">show</span>, one place</h1>
+    <p class="muted" style="max-width:640px">Watch on YouTube or listen on Spotify and Apple. Filter by the show you want.</p>
+  </div></section>
+  <section class="section tight"><div class="wrap">
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:10px">
+      <div class="filters" id="filters" style="margin:0">
+        <button data-s="all" class="active">All</button>
+        <button data-s="interview">Interviews</button>
+        <button data-s="rundown">The Rundown</button>
+        <button data-s="npa">NPA Market Update</button>
+        <button data-s="ai">AI This Month</button>
+        <button data-s="short">Clips</button>
+      </div>
+      <input class="search" id="q" type="search" placeholder="Search episodes…" aria-label="Search episodes">
+    </div>
+    <div class="cards" id="list"></div>
+    <div style="text-align:center;margin-top:30px"><a class="btn btn-ghost" href="https://www.youtube.com/@dealershipfixit/videos" target="_blank" rel="noopener">Older episodes on YouTube →</a> <a class="btn btn-ghost" href="https://open.spotify.com/show/32L4getcOmBCYL3fRxDlyH" target="_blank" rel="noopener">Full archive on Spotify →</a></div>
+  </div></section>
+</main>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(location.search);
+  let seg = params.get("s") || "all", q = params.get("q") || "";
+  document.getElementById("q").value = q;
+  const btns = document.querySelectorAll("#filters button");
+  const sync = () => { btns.forEach(b => b.classList.toggle("active", b.dataset.s === seg)); history.replaceState(null, "", seg === "all" ? "/episodes" : "/episodes?s=" + seg); };
+  const draw = () => FixitEpisodes.renderList("#list", { segment: seg, query: q, excludeShorts: seg !== "short", limit: 0 });
+  btns.forEach(b => b.addEventListener("click", () => { seg = b.dataset.s; sync(); draw(); }));
+  document.getElementById("q").addEventListener("input", e => { q = e.target.value; draw(); });
+  sync(); draw();
+});
+</script>
+</body>
+</html>

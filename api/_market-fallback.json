@@ -1,0 +1,26 @@
+{
+  "asOf": "last recorded close",
+  "source": "snapshot",
+  "rows": [
+    {"group":"Index","name":"S&P 500","ticker":"INDEXSP:.INX","symbolShort":"","price":6910.39,"changePct":-3.70,"priorClose":7175.83,"scroll":true},
+    {"group":"Index","name":"Dow Jones","ticker":"INDEXDJX:.DJI","symbolShort":"","price":48147.33,"changePct":-1.93,"priorClose":49097.06,"scroll":true},
+    {"group":"Index","name":"Nasdaq","ticker":"INDEXNASDAQ:.IXIC","symbolShort":"","price":22617.73,"changePct":-5.28,"priorClose":23879.20,"scroll":true},
+    {"group":"OEM, US listed","name":"Polaris","ticker":"NYSE:PII","symbolShort":"PII","price":63.73,"changePct":-1.12,"priorClose":64.45,"scroll":true},
+    {"group":"OEM, US listed","name":"Harley-Davidson","ticker":"NYSE:HOG","symbolShort":"HOG","price":32.52,"changePct":-0.55,"priorClose":32.70,"scroll":true},
+    {"group":"OEM, US listed","name":"LiveWire","ticker":"NYSE:LVWR","symbolShort":"LVWR","price":0.99,"changePct":55.44,"priorClose":0.64,"scroll":true},
+    {"group":"OEM, US listed","name":"BRP","ticker":"NASDAQ:DOO","symbolShort":"DOO","price":61.90,"changePct":-1.56,"priorClose":62.88,"scroll":true},
+    {"group":"OEM, US listed","name":"Honda","ticker":"NYSE:HMC","symbolShort":"HMC","price":32.58,"changePct":-2.31,"priorClose":33.35,"scroll":true},
+    {"group":"OEM, Tokyo","name":"Yamaha","ticker":"YAMHF","symbolShort":"","price":11.30,"changePct":-0.04,"priorClose":11.30,"scroll":true},
+    {"group":"OEM, Tokyo","name":"Suzuki","ticker":"SZKMY","symbolShort":"","price":54.61,"changePct":-0.18,"priorClose":54.71,"scroll":true},
+    {"group":"OEM, Tokyo","name":"Kawasaki","ticker":"KWHIY","symbolShort":"","price":3.75,"changePct":-8.76,"priorClose":4.11,"scroll":true},
+    {"group":"OEM, Europe","name":"Bajaj Mobility (KTM)","ticker":"BMAG","symbolShort":"","price":25.00,"changePct":-3.85,"priorClose":26.00,"scroll":true},
+    {"group":"OEM, Europe","name":"Piaggio","ticker":"BIT:PIA","symbolShort":"","price":2.13,"changePct":-2.83,"priorClose":2.19,"scroll":true},
+    {"group":"OEM, Europe","name":"Volkswagen (Ducati)","ticker":"ETR:VOW3","symbolShort":"","price":62.62,"changePct":-3.13,"priorClose":64.64,"scroll":true},
+    {"group":"Aftermarket","name":"Fox Factory","ticker":"NASDAQ:FOXF","symbolShort":"FOXF","price":16.06,"changePct":-4.97,"priorClose":16.90,"scroll":true},
+    {"group":"Dealer and retail","name":"RideNow","ticker":"NASDAQ:RDNW","symbolShort":"RDNW","price":4.14,"changePct":-6.23,"priorClose":4.42,"scroll":true},
+    {"group":"Dealer and retail","name":"Sonic Automotive","ticker":"NYSE:SAH","symbolShort":"SAH","price":58.69,"changePct":-0.89,"priorClose":59.22,"scroll":true},
+    {"group":"Dealer and retail","name":"MarineMax","ticker":"NYSE:HZO","symbolShort":"HZO","price":52.82,"changePct":0.02,"priorClose":52.81,"scroll":true},
+    {"group":"Dealer and retail","name":"OneWater Marine","ticker":"NASDAQ:ONEW","symbolShort":"ONEW","price":9.52,"changePct":-7.93,"priorClose":10.34,"scroll":true},
+    {"group":"Dealer and retail","name":"Camping World","ticker":"NYSE:CWH","symbolShort":"CWH","price":4.28,"changePct":-1.38,"priorClose":4.34,"scroll":true}
+  ]
+}
