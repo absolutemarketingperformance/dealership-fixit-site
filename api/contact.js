@@ -25,7 +25,8 @@ module.exports = async (req, res) => {
 
   const results = await Promise.allSettled([toSupabase(record), toHubSpot(record), toEmail(record)]);
   const delivered = results.some(r => r.status === "fulfilled" && r.value === true);
-  if (!delivered) console.log("fixit_submission", JSON.stringify(record)); // visible in Vercel logs until a destination is set
+  const outcome = results.map((r, i) => ["supabase", "hubspot", "email"][i] + ":" + (r.status === "fulfilled" ? (r.value ? "ok" : "skip") : "fail " + (r.reason && r.reason.message))).join(" ");
+  console.log(delivered ? "fixit_submission_ok" : "fixit_submission", outcome, JSON.stringify({ type: record.type, email: record.email, page: record.page }));
 
   const msgs = {
     newsletter: "You are on the list. Watch for the next Rundown.",

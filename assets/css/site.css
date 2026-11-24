@@ -39,12 +39,13 @@ h2{font-size:clamp(1.5rem,3.2vw,2.3rem)}
 h3{font-size:1.15rem;font-family:var(--font-body);font-weight:700;letter-spacing:0}
 h1,h2{text-transform:uppercase}
 /* Page titles: Overdrive Avenue Outline with the brand purple to white to pink fill, like the lettering set */
-h1{font-family:"Overdrive Avenue Outline",var(--font-head);letter-spacing:.06em;line-height:1.1;
+h1,h2{font-family:"Overdrive Avenue Outline",var(--font-head);letter-spacing:.06em;line-height:1.1;
   background:linear-gradient(180deg,#8f7bff 0%,#d6ccff 32%,#ffffff 50%,#ffc4f6 70%,#ff8af2 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 0 1.5px rgba(255,255,255,.85)) drop-shadow(0 0 12px rgba(221,3,156,.45));padding-bottom:.08em}
 h1{font-size:clamp(2.2rem,5.4vw,3.9rem)}
-h1 .script{-webkit-text-fill-color:var(--pink);color:var(--pink);background:none;-webkit-background-clip:initial;background-clip:initial;filter:none}
-h1 .grad{-webkit-text-fill-color:transparent}
+h1 .script,h2 .script{-webkit-text-fill-color:var(--pink);color:var(--pink);background:none;-webkit-background-clip:initial;background-clip:initial;filter:none}
+h1 .grad,h2 .grad{-webkit-text-fill-color:transparent}
+h2{font-size:clamp(1.6rem,3.4vw,2.5rem);letter-spacing:.07em}
 p{margin:0 0 1em}
 .muted{color:var(--muted)}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
