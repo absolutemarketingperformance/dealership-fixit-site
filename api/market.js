@@ -44,12 +44,13 @@ async function fromYahoo() {
 
 async function quote(symbol) {
   try {
-    const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=5d&interval=1d`, { headers: UA });
+    const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=1d&interval=1d`, { headers: UA });
     if (!r.ok) return null;
     const j = await r.json();
     const m = j && j.chart && j.chart.result && j.chart.result[0] && j.chart.result[0].meta;
     if (!m || m.regularMarketPrice == null) return null;
-    const prev = m.chartPreviousClose != null ? m.chartPreviousClose : m.previousClose;
+    // previousClose is yesterday's close; chartPreviousClose is the close before the requested range (with range=1d, also yesterday).
+    const prev = m.previousClose != null ? m.previousClose : m.chartPreviousClose;
     const price = m.regularMarketPrice;
     const changePct = prev ? ((price - prev) / prev) * 100 : null;
     return { price: round(price), prev: round(prev), changePct: changePct == null ? null : Math.round(changePct * 100) / 100, currency: m.currency, time: m.regularMarketTime };
