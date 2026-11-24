@@ -5,7 +5,7 @@ const mime = { ".html": "text/html", ".css": "text/css", ".js": "text/javascript
 http.createServer(async (req, res) => {
   const u = new URL(req.url, "http://x");
   if (u.pathname.startsWith("/api/")) {
-    const fn = require(path.join(root, u.pathname + ".js"));
+    const fn = require(path.join(__dirname, u.pathname + ".js"));
     let body = ""; for await (const c of req) body += c;
     req.body = body ? JSON.parse(body) : undefined;
     res.status = c => { res.statusCode = c; return res; };
