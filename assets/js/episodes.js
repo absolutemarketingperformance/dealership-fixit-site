@@ -8,6 +8,7 @@
     short: { label: "Clip", cls: "interview" }
   };
   let cache = null;
+  const ic = (n) => window.fixitIcon ? window.fixitIcon(n, 14) : "";
 
   async function getEpisodes() {
     if (cache) return cache;
@@ -21,9 +22,9 @@
     const seg = SEG[ep.segment] || SEG.interview;
     const date = ep.published ? new Date(ep.published).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : "";
     const thumb = ep.thumbnail ? `style="background-image:url('${ep.thumbnail}')"` : "";
-    const yt = ep.youtubeUrl ? `<a class="btn btn-ghost btn-sm" href="${ep.youtubeUrl}" target="_blank" rel="noopener">▶ Watch</a>` : "";
-    const sp = ep.spotifyUrl ? `<a class="btn btn-ghost btn-sm" href="${ep.spotifyUrl}" target="_blank" rel="noopener">♫ Listen</a>` : "";
-    const ap = ep.appleUrl ? `<a class="btn btn-ghost btn-sm" href="${ep.appleUrl}" target="_blank" rel="noopener"> Apple</a>` : "";
+    const yt = ep.youtubeUrl ? `<a class="btn btn-ghost btn-sm" href="${ep.youtubeUrl}" target="_blank" rel="noopener">${ic("youtube")} Watch</a>` : "";
+    const sp = ep.spotifyUrl ? `<a class="btn btn-ghost btn-sm" href="${ep.spotifyUrl}" target="_blank" rel="noopener">${ic("spotify")} Listen</a>` : "";
+    const ap = ep.appleUrl ? `<a class="btn btn-ghost btn-sm" href="${ep.appleUrl}" target="_blank" rel="noopener">${ic("apple")} Apple</a>` : "";
     const link = ep.youtubeUrl || ep.spotifyUrl || ep.appleUrl || "#";
     return `<article class="card">
       <a class="thumb" href="${link}" target="_blank" rel="noopener" ${thumb}><span class="play"><span>▶</span></span></a>
