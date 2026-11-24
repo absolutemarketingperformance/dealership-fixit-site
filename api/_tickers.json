@@ -1,0 +1,42 @@
+[
+  {"group":"Index","name":"S&P 500","symbol":"^GSPC","short":"","scroll":true},
+  {"group":"Index","name":"Dow Jones","symbol":"^DJI","short":"","scroll":true},
+  {"group":"Index","name":"Nasdaq","symbol":"^IXIC","short":"","scroll":true},
+
+  {"group":"OEM, US listed","name":"Polaris","symbol":"PII","short":"PII","scroll":true},
+  {"group":"OEM, US listed","name":"Harley-Davidson","symbol":"HOG","short":"HOG","scroll":true},
+  {"group":"OEM, US listed","name":"LiveWire","symbol":"LVWR","short":"LVWR","scroll":true},
+  {"group":"OEM, US listed","name":"BRP","symbol":"DOOO","short":"DOOO","scroll":true},
+  {"group":"OEM, US listed","name":"Honda","symbol":"HMC","short":"HMC","scroll":true},
+  {"group":"OEM, US listed","name":"Fox Factory","symbol":"FOXF","short":"FOXF","scroll":true},
+
+  {"group":"OEM, Tokyo","name":"Yamaha","symbol":"YAMHF","short":"","scroll":true},
+  {"group":"OEM, Tokyo","name":"Suzuki","symbol":"SZKMY","short":"","scroll":true},
+  {"group":"OEM, Tokyo","name":"Kawasaki","symbol":"KWHIY","short":"","scroll":true},
+
+  {"group":"OEM, Europe","name":"Bajaj Mobility (KTM)","symbol":"BMAG.SW","alt":"PKTM.SW","short":"","scroll":true},
+  {"group":"OEM, Europe","name":"Piaggio","symbol":"PIA.MI","short":"","scroll":true},
+  {"group":"OEM, Europe","name":"Volkswagen (Ducati)","symbol":"VOW3.DE","short":"","scroll":true},
+  {"group":"OEM, Europe","name":"Eicher (Royal Enfield)","symbol":"EICHERMOT.NS","short":"","scroll":false},
+
+  {"group":"Dealer and retail","name":"RideNow","symbol":"RDNW","short":"RDNW","scroll":true},
+  {"group":"Dealer and retail","name":"Sonic Automotive","symbol":"SAH","short":"SAH","scroll":true},
+  {"group":"Dealer and retail","name":"Lithia","symbol":"LAD","short":"LAD","scroll":false},
+  {"group":"Dealer and retail","name":"Penske Automotive","symbol":"PAG","short":"PAG","scroll":false},
+  {"group":"Dealer and retail","name":"Camping World","symbol":"CWH","short":"CWH","scroll":true},
+  {"group":"Dealer and retail","name":"Lazydays","symbol":"GORV","short":"GORV","scroll":false},
+  {"group":"Dealer and retail","name":"Copart (NPA)","symbol":"CPRT","short":"CPRT","scroll":false},
+
+  {"group":"Marine","name":"MarineMax","symbol":"HZO","short":"HZO","scroll":true},
+  {"group":"Marine","name":"OneWater Marine","symbol":"ONEW","short":"ONEW","scroll":true},
+  {"group":"Marine","name":"Brunswick","symbol":"BC","short":"BC","scroll":false},
+  {"group":"Marine","name":"Malibu Boats","symbol":"MBUU","short":"MBUU","scroll":false},
+  {"group":"Marine","name":"MasterCraft","symbol":"MCFT","short":"MCFT","scroll":false},
+
+  {"group":"RV","name":"Thor Industries","symbol":"THO","short":"THO","scroll":false},
+  {"group":"RV","name":"Winnebago","symbol":"WGO","short":"WGO","scroll":false},
+  {"group":"RV","name":"LCI Industries","symbol":"LCII","short":"LCII","scroll":false},
+  {"group":"RV","name":"Patrick Industries","symbol":"PATK","short":"PATK","scroll":false},
+
+  {"group":"Lending","name":"Synchrony","symbol":"SYF","short":"SYF","scroll":false}
+]

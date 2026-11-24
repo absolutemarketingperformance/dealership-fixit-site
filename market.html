@@ -21,7 +21,7 @@
         <tbody><tr><td colspan="5" class="muted">Loading…</td></tr></tbody>
       </table>
     </div>
-    <p class="disclaimer" style="margin-top:12px">Data from Google Finance by way of our tracking sheet. Shown for information and conversation only. This is not investment advice and we are not financial advisors. Check prices with your broker before you act on anything.</p>
+    <p class="disclaimer" style="margin-top:12px">Quotes are delayed 15 to 20 minutes and refresh every 15 minutes. Overseas names show in their home currency. Shown for information and conversation only. This is not investment advice and we are not financial advisors. Check prices with your broker before you act on anything.</p>
   </div></section>
 
   <section class="section tight"><div class="wrap" style="display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
@@ -38,10 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
     for (const r of j.rows || []) {
       if (r.group && r.group !== g) { g = r.group; html += `<tr class="group"><td colspan="5">${g}</td></tr>`; }
       const up = (r.changePct || 0) >= 0;
-      html += `<tr><td>${r.name}</td><td class="muted">${r.ticker}</td><td class="num">${r.price == null ? "" : fmtNum(r.price)}</td><td class="num ${up ? "up" : "down"}">${r.changePct == null ? "" : (up ? "▲ " : "▼ ") + Math.abs(r.changePct).toFixed(2) + "%"}</td><td class="num muted">${r.priorClose == null ? "" : fmtNum(r.priorClose)}</td></tr>`;
+      html += `<tr><td>${r.name}</td><td class="muted">${r.ticker}</td><td class="num">${r.price == null ? "" : fmtNum(r.price)}${r.currency && r.currency !== "USD" ? ` <span class="muted" style="font-size:.75em">${r.currency}</span>` : ""}</td><td class="num ${up ? "up" : "down"}">${r.changePct == null ? "" : (up ? "▲ " : "▼ ") + Math.abs(r.changePct).toFixed(2) + "%"}</td><td class="num muted">${r.priorClose == null ? "" : fmtNum(r.priorClose)}</td></tr>`;
     }
     tb.innerHTML = html || '<tr><td colspan="5" class="muted">No data yet.</td></tr>';
-    document.getElementById("asof").textContent = j.asOf ? `As of ${j.asOf}${j.source === "snapshot" ? " (last saved snapshot)" : ""}` : "";
+    document.getElementById("asof").textContent = j.asOf ? `Last trade: ${j.asOf}${j.source === "snapshot" ? " (last saved snapshot)" : ""}` : "";
   }).catch(() => {});
 });
 </script>
