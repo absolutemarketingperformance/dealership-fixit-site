@@ -13,7 +13,7 @@
   --yellow:#ffd24a;
   --orange:#ff7a2f;
   --text:#f4ecff;
-  --muted:#b9a8d6;
+  --muted:#cfc3e8;
   --green:#3ddc84;
   --red:#ff5c5c;
   --radius:14px;
@@ -22,10 +22,10 @@
   --font-script:"Hotliner","Permanent Marker",cursive;
   --font-body:"Space Grotesk",system-ui,-apple-system,Segoe UI,sans-serif;
 }
-/* Brand fonts: drop OverdriveAvenue.woff2 and Hotliner.woff2 into assets/fonts and these take over */
-@font-face{font-family:"Overdrive Avenue";src:url(/assets/fonts/OverdriveAvenue.woff2) format("woff2");font-display:swap}
+/* Brand fonts: drop OverdriveAvenue-v2.woff2 and Hotliner.woff2 into assets/fonts and these take over */
+@font-face{font-family:"Overdrive Avenue";src:url(/assets/fonts/OverdriveAvenue-v2.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"Hotliner";src:url(/assets/fonts/Hotliner.woff2) format("woff2");font-display:swap}
-@font-face{font-family:"Overdrive Avenue Outline";src:url(/assets/fonts/OverdriveAvenue-Outline.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Overdrive Avenue Outline";src:url(/assets/fonts/OverdriveAvenue-Outline-v2.woff2) format("woff2");font-display:swap}
 .outline{font-family:"Overdrive Avenue Outline",var(--font-head);letter-spacing:.08em}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -39,12 +39,11 @@ h2{font-size:clamp(1.5rem,3.2vw,2.3rem)}
 h3{font-size:1.15rem;font-family:var(--font-body);font-weight:700;letter-spacing:0}
 h1,h2{text-transform:uppercase}
 /* Page titles: Overdrive Avenue Outline with the brand purple to white to pink fill, like the lettering set */
-h1,h2{font-family:"Overdrive Avenue Outline",var(--font-head);letter-spacing:.06em;line-height:1.1;
-  background:linear-gradient(180deg,#8f7bff 0%,#d6ccff 32%,#ffffff 50%,#ffc4f6 70%,#ff8af2 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
-  filter:drop-shadow(0 0 1.5px rgba(255,255,255,.85)) drop-shadow(0 0 12px rgba(221,3,156,.45));padding-bottom:.08em}
+h1,h2{font-family:"Overdrive Avenue Outline",var(--font-head);letter-spacing:.06em;line-height:1.1;color:#ece6ff;
+  text-shadow:0 0 1px #fff,0 0 10px rgba(221,3,156,.75),0 0 28px rgba(221,3,156,.45);padding-bottom:.08em;overflow-wrap:anywhere}
 h1{font-size:clamp(2.2rem,5.4vw,3.9rem)}
-h1 .script,h2 .script{-webkit-text-fill-color:var(--pink);color:var(--pink);background:none;-webkit-background-clip:initial;background-clip:initial;filter:none}
-h1 .grad,h2 .grad{-webkit-text-fill-color:transparent}
+h1 .script,h2 .script{color:var(--pink);text-shadow:0 0 12px rgba(221,3,156,.5)}
+h1 .grad,h2 .grad{color:var(--cyan);text-shadow:0 0 12px rgba(45,226,255,.5);background:none}
 h2{font-size:clamp(1.6rem,3.4vw,2.5rem);letter-spacing:.07em}
 p{margin:0 0 1em}
 .muted{color:var(--muted)}
@@ -235,7 +234,7 @@ form.ff .hp{position:absolute;left:-9999px}
 
 /* Sponsors */
 .sponsors{display:flex;gap:28px;flex-wrap:wrap;align-items:center;justify-content:center}
-.sponsor{padding:18px 26px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.03);display:flex;flex-direction:column;align-items:center;gap:4px;color:#fff;min-width:200px;text-align:center}
+.sponsor{padding:18px 26px;border:1px solid var(--line);border-radius:12px;background:rgba(10,4,24,.72);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;gap:4px;color:#fff;min-width:200px;text-align:center}
 .sponsor:hover{border-color:var(--pink);text-decoration:none}
 .sponsor .n{font-family:var(--font-head);letter-spacing:.08em}
 .sponsor .d{font-size:.8rem;color:var(--muted)}
@@ -272,3 +271,15 @@ footer .legal{margin-top:34px;padding-top:18px;border-top:1px solid rgba(255,255
 @keyframes sk{from{background-position:200% 0}to{background-position:-200% 0}}
 .empty{padding:40px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:var(--radius);background:var(--panel)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* Mobile polish */
+.mkt-table td.num,.mkt-table th{white-space:nowrap}
+@media (max-width:640px){
+  .bgshade{background:linear-gradient(180deg,rgba(5,2,15,.55) 0,rgba(5,2,15,.75) 40%,rgba(5,2,15,.92) 100%)}
+  h1{font-size:clamp(1.7rem,8.5vw,2.4rem);letter-spacing:.04em}
+  h2{font-size:clamp(1.25rem,6.2vw,1.7rem);letter-spacing:.05em}
+  .ticker{font-size:.8rem}.ticker .label{padding:0 10px;font-size:.62rem}.ticker .track{padding-left:110px}
+  .mkt-table{font-size:.85rem}.mkt-table td,.mkt-table th{padding:10px 8px}
+  .mkt-table td:nth-child(2),.mkt-table th:nth-child(2),.mkt-table td:nth-child(5),.mkt-table th:nth-child(5){display:none}
+  .sponsors{flex-direction:column;align-items:stretch}.sponsor{min-width:0}
+}
