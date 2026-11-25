@@ -20,7 +20,9 @@ module.exports = async (req, res) => {
     name: clip(body.name, 120), company: clip(body.company, 120), phone: clip(body.phone, 40),
     role: clip(body.role, 120), topic: clip(body.topic, 200), message: clip(body.message || body.pitch, 4000),
     budget: clip(body.budget, 60), links: clip(body.links, 500), page: clip(body.page, 200),
-    user_agent: clip(req.headers["user-agent"], 300), created_at: new Date().toISOString()
+    user_agent: clip(req.headers["user-agent"], 300), created_at: new Date().toISOString(),
+    ip: clip(String(req.headers["x-forwarded-for"] || req.headers["x-real-ip"] || "").split(",")[0], 60),
+    hutk: clip(body.hutk, 80)
   };
 
   const results = await Promise.allSettled([toSupabase(record), toHubSpot(record), toEmail(record)]);
@@ -59,14 +61,21 @@ async function toHubSpot(r) {
   const tagged = base.concat([["dealership_fixit_subscriber", "true"], ["dealership_fixit_signup_source", `${r.type} form on ${r.page || "/"}`]]);
   const submit = async (pairs) => {
     const fields = pairs.filter(([, v]) => v).map(([name, value]) => ({ name, value }));
+    // Real visitor IP + hubspotutk cookie keep HubSpot's spam filter from quietly dropping server-side submissions.
+    const context = { pageUri: "https://dealershipfixit.com" + (r.page || "/"), pageName: "Dealership fiXit " + r.type };
+    if (r.ip) context.ipAddress = r.ip;
+    if (r.hutk) context.hutk = r.hutk;
     return fetch(`https://api.hsforms.com/submissions/v3/integration/submit/${portal}/${form}`, {
-      method: "POST", headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ fields, context: { pageUri: "https://dealershipfixit.com" + (r.page || "/"), pageName: "Dealership fiXit " + r.type } })
+      method: "POST", headers: { "Content-Type": "application/json", "User-Agent": r.user_agent || "dealershipfixit.com" },
+      body: JSON.stringify({ fields, context })
     });
   };
   let res = await submit(tagged);
-  if (res.status === 400) res = await submit(base);
-  if (!res.ok) throw new Error("hubspot " + res.status + " " + (await res.text()).slice(0, 200));
+  let variant = "tagged";
+  if (res.status === 400) { res = await submit(base); variant = "base"; }
+  const text = await res.text();
+  console.log("hubspot_forms", res.status, variant, text.slice(0, 300));
+  if (!res.ok) throw new Error("hubspot " + res.status + " " + text.slice(0, 200));
   return true;
 }
 

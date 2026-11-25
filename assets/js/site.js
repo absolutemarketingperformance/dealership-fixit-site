@@ -180,6 +180,8 @@
     const data = Object.fromEntries(new FormData(f).entries());
     data.type = f.dataset.fixit;
     data.page = location.pathname;
+    const hutk = (document.cookie.match(/(?:^|;\s*)hubspotutk=([^;]+)/) || [])[1];
+    if (hutk) data.hutk = hutk;
     if (data.website) return; // honeypot
     btn && (btn.disabled = true);
     msg.className = "form-msg";
